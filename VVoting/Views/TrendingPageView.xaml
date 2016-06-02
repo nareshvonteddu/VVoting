@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  x:Class="VVoting.TrendingPageView" Title="Trending"
+  xmlns:circleImage="clr-namespace:VVoting" BackgroundColor="White">
+	<ContentPage.Content>
+	<StackLayout Margin = "0,20,0,0">
+	<Label Text="Please cast your Virtual Vote" TextColor = "Navy" FontSize="15" FontFamily="Bold" HorizontalOptions = "Center"/>
+	<Grid Margin="10">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="150"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="150"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="150"/>
+		</Grid.ColumnDefinitions>
+
+		<circleImage:ImageCircle Source="DemocraticLogo.png" Margin="10" BorderColor="{Binding DemocraticBorderColor, Mode=TwoWay}">
+		<circleImage:ImageCircle.GestureRecognizers>
+				<TapGestureRecognizer Command="{Binding TapDemocratic}"/>
+			</circleImage:ImageCircle.GestureRecognizers>
+		</circleImage:ImageCircle>
+		<circleImage:ImageCircle Source="RepublicanlogoBorder.png" Grid.Column="2" Margin="10" BorderColor="{Binding RepublicBorderColor}">
+		<circleImage:ImageCircle.GestureRecognizers>
+				<TapGestureRecognizer Command="{Binding TapRepublic}"/>
+			</circleImage:ImageCircle.GestureRecognizers>
+		</circleImage:ImageCircle>
+	</Grid>
+
+<!--	<Button Text="ClickMe" x:Name="ClickMeButton" Command="{Binding ClickMeButton}">
+
+	</Button>
+	<Label Text="{Binding ClickCount}">
+	</Label>-->
+	</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

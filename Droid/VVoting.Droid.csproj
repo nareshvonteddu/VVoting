@@ -103,6 +103,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="ImageCicleRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -119,6 +120,11 @@
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable\DemocraticLogo.png" />
+    <AndroidResource Include="Resources\drawable\Republicanlogo.png" />
+    <AndroidResource Include="Resources\drawable\DemocraticLogo1.png" />
+    <AndroidResource Include="Resources\drawable\DemocraticResize.png" />
+    <AndroidResource Include="Resources\drawable\RepublicanlogoBorder.png" />
   </ItemGroup>
   <Import Project="..\VVoting\VVoting.projitems" Label="Shared" Condition="Exists('..\VVoting\VVoting.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

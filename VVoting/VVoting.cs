@@ -8,6 +8,7 @@ namespace VVoting
 {
 	public class App : Application
 	{
+		public static IContainer container { get; set; }
 		public App ()
 		{
 
@@ -16,12 +17,17 @@ namespace VVoting
 			ContainerBuilder builder = new ContainerBuilder ();
 			builder.RegisterType<MainPageViewModel>();
 			builder.RegisterType<MainPageView> ().SingleInstance ();
+			builder.RegisterType<TrendingViewModel> ();
+			builder.RegisterType<TrendingPageView> ().SingleInstance ();
+			builder.RegisterType<HistoryPageViewModel> ();
+			builder.RegisterType<HistoryPageView> ().SingleInstance ();
 
-			IContainer c = builder.Build ();
+
+			container = builder.Build ();
 
 
 
-			var page = c.Resolve<MainPageView> ();
+			var page = container.Resolve<MainPageView> ();
 			MainPage = page;
 		}
 
