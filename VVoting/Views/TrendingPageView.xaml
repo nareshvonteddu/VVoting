@@ -2,9 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
   x:Class="VVoting.TrendingPageView" Title="Trending"
-  xmlns:circleImage="clr-namespace:VVoting" BackgroundColor="White">
+  xmlns:circleImage="clr-namespace:VVoting">
 	<ContentPage.Content>
-	<StackLayout Margin = "0,20,0,0">
+	<StackLayout Margin = "0,30,0,0">
 	<Label Text="Please cast your Virtual Vote" TextColor = "Navy" FontSize="15" FontFamily="Bold" HorizontalOptions = "Center"/>
 	<Grid Margin="10">
 		<Grid.RowDefinitions>
@@ -27,12 +27,39 @@
 			</circleImage:ImageCircle.GestureRecognizers>
 		</circleImage:ImageCircle>
 	</Grid>
+	<Label Text="Your Information (Optional)" TextColor="Navy" FontSize="15" FontFamily="Bold" HorizontalOptions = "Center"/>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="Auto"/>
+		</Grid.ColumnDefinitions>
+		<Label Text="Gender" VerticalOptions="Center"/>
+		<Picker Grid.Row="0" Grid.Column="1" SelectedIndex="{Binding SelectedGender}" VerticalOptions="Center">
+			<Picker.Items>
+				<x:String>N/A</x:String> 
+				<x:String>Male</x:String> 
+            	<x:String>Female</x:String>
+			</Picker.Items>
+		</Picker>
+		<Label Text="Race/Ethnicity" VerticalOptions="Center" Grid.Row="1"/>
+		<Picker Grid.Row="1" Grid.Column="1" SelectedIndex="{Binding SelectedRace}" VerticalOptions="Center">
+			<Picker.Items>
+				<x:String>Other</x:String> 
+				<x:String>White</x:String> 
+            	<x:String>African American</x:String>
+            	<x:String>Asian American</x:String>
+            	<x:String>Hispanic or Latino</x:String>
+			</Picker.Items>
+		</Picker>
+	</Grid>
 
-<!--	<Button Text="ClickMe" x:Name="ClickMeButton" Command="{Binding ClickMeButton}">
+	<Button Text="Done" HorizontalOptions="Center" BackgroundColor="Navy" TextColor="White"
+	 WidthRequest="75" Margin="0,10,0,0" VerticalOptions="End" Command="{Binding DoneTaped}"/>
 
-	</Button>
-	<Label Text="{Binding ClickCount}">
-	</Label>-->
 	</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

@@ -11,7 +11,7 @@ namespace VVoting
 		public static IContainer container { get; set; }
 		public App ()
 		{
-
+			//Akavache.BlobCache.ApplicationName = "vvoting";
 			//MainPage = new VVoting.Views.MainPageView ();
 
 			ContainerBuilder builder = new ContainerBuilder ();
@@ -21,6 +21,7 @@ namespace VVoting
 			builder.RegisterType<TrendingPageView> ().SingleInstance ();
 			builder.RegisterType<HistoryPageViewModel> ();
 			builder.RegisterType<HistoryPageView> ().SingleInstance ();
+			builder.RegisterType<Cache> ().SingleInstance ();
 
 
 			container = builder.Build ();

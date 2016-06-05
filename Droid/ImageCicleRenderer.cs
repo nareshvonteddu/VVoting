@@ -17,10 +17,6 @@ namespace VVoting.Droid
 {
 	public class ImageCicleRenderer : ImageRenderer
 	{
-		Canvas _canvas;
-		global::Android.Views.View _child;
-		long _drawingTime;
-
 		public ImageCicleRenderer ()
 		{
 		}
@@ -36,7 +32,7 @@ namespace VVoting.Droid
 //				_drawingTime = drawingTime;
 
 				var radius = Math.Min(Width, Height) / 2;
-				var strokeWidth = 20;
+				var strokeWidth = 30;
 				radius -= strokeWidth / 2;
 
 				//Create path to clip
@@ -55,7 +51,7 @@ namespace VVoting.Droid
 
 				var paint = new Paint();
 				paint.AntiAlias = true;
-				paint.StrokeWidth = 20;
+				paint.StrokeWidth = 30;
 				paint.SetStyle(Paint.Style.Stroke);
 				paint.Color =  ((ImageCircle)Element).BorderColor.ToAndroid(); //global::Android.Graphics.Color.White;
 

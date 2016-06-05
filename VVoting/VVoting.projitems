@@ -23,6 +23,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TrendingViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HistoryPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ImageCircle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Caching\CacheObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Caching\Cache.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Caching\ICache.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MainPageView.xaml">
@@ -38,5 +41,6 @@
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Caching\" />
   </ItemGroup>
 </Project>
