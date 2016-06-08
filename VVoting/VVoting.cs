@@ -22,11 +22,10 @@ namespace VVoting
 			builder.RegisterType<HistoryPageViewModel> ();
 			builder.RegisterType<HistoryPageView> ().SingleInstance ();
 			builder.RegisterType<Cache> ().SingleInstance ();
+			builder.RegisterType<AzureDataService> ().SingleInstance ();
 
 
 			container = builder.Build ();
-
-
 
 			var page = container.Resolve<MainPageView> ();
 			MainPage = page;

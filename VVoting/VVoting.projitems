@@ -26,6 +26,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Caching\CacheObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Caching\Cache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Caching\ICache.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Azure\VoteCount.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Azure\AzureDataService.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MainPageView.xaml">
@@ -42,5 +44,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
     <Folder Include="$(MSBuildThisFileDirectory)Caching\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Azure\" />
   </ItemGroup>
 </Project>

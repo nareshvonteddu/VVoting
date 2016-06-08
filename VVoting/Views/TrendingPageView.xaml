@@ -48,6 +48,7 @@
 		<Label Text="Race/Ethnicity" VerticalOptions="Center" Grid.Row="1"/>
 		<Picker Grid.Row="1" Grid.Column="1" SelectedIndex="{Binding SelectedRace}" VerticalOptions="Center">
 			<Picker.Items>
+				<x:String>N/A</x:String> 
 				<x:String>Other</x:String> 
 				<x:String>White</x:String> 
             	<x:String>African American</x:String>

@@ -6,14 +6,20 @@ using System.ComponentModel;
 using Xamarin.Forms;
 using System.Collections.Generic;
 using Autofac;
+using System.Reactive.Linq;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace VVoting
 {
 	public class TrendingViewModel : ViewModelBase
 	{
 		private string  _clickCount = "";
-		CacheObject cacheObject;
+		CacheObject cacheObjectOld;
+		CacheObject cacheObjectNew = new CacheObject ();
 		Cache cache;
+		AzureDataService dataService;
+		VoteCount voteCount = new VoteCount();
 
 		public string ClickCount 
 		{
@@ -85,34 +91,51 @@ namespace VVoting
 //			GenderOptions.Add ("Male");
 //			GenderOptions.Add ("Female");
 
-			cacheObject = new CacheObject();
+			cacheObjectOld = new CacheObject();
 			using (var scope = App.container.BeginLifetimeScope ()) {  
 				cache = App.container.Resolve<Cache> ();
+				dataService = App.container.Resolve<AzureDataService> ();
 			}
 
+			//LoadVoteCountAsync ();
 			LoadCacheDataAsync ();
 
+		}
+
+		private async Task<VoteCount> LoadVoteCountAsync()
+		{
+			await dataService.Initialize();
+
+			var voteCounts = await dataService.GetVoteCount ();
+			if(voteCounts != null && voteCounts.Count > 0)
+			{
+				voteCount = voteCounts [0];
+			}
+			return voteCount;
 		}
 
 		private async void LoadCacheDataAsync()
 		{
 			try
 			{
-				cacheObject = await cache.GetObject<CacheObject>("first");
+				cacheObjectOld = await cache.GetObject<CacheObject>("first");
 			}
 			catch(Exception) 
 			{
-				cacheObject = new CacheObject ();
+				cacheObjectOld = new CacheObject ();
 			}
 
-			if (cacheObject.VoteForIndex == 0) {
-				DemocraticBorderColor = Color.Green;
-			} else {
-				RepublicBorderColor = Color.Green;
-			}
+			if (cacheObjectOld != null) 
+			{
+				if (cacheObjectOld.VoteForIndex == 1) {
+					DemocraticBorderColor = Color.Green;
+				} else {
+					RepublicBorderColor = Color.Green;
+				}
 
-			SelectedRace = cacheObject.RaceIndex;
-			SelectedGender = cacheObject.GenderIndex;
+				SelectedRace = cacheObjectOld.RaceIndex;
+				SelectedGender = cacheObjectOld.GenderIndex;
+			}
 		}
 
 
@@ -128,7 +151,7 @@ namespace VVoting
 							DemocraticBorderColor = Color.Green; //String.Format("Clicked {0} times", i++);
 							RepublicBorderColor = Color.Gray;
 
-							cacheObject.VoteForIndex = 0;
+							cacheObjectNew.VoteForIndex = 1;
 
 //							ClickCount = String.Format("you have clicke it {0} times", i);
 //							i++;
@@ -147,7 +170,7 @@ namespace VVoting
 							DemocraticBorderColor = Color.Gray; //String.Format("Clicked {0} times", i++);
 							RepublicBorderColor = Color.Green;
 
-							cacheObject.VoteForIndex = 1;
+							cacheObjectNew.VoteForIndex = 2;
 						})); 
 			} 
 		}
@@ -159,12 +182,98 @@ namespace VVoting
 					?? (_doneTaped = new RelayCommand (
 						() => 
 						{ 
-							cacheObject.GenderIndex = SelectedGender;
-							cacheObject.RaceIndex = SelectedRace;
-							cache.InsertObject<CacheObject>("first",cacheObject);
+							cacheObjectNew.GenderIndex = SelectedGender;
+							cacheObjectNew.RaceIndex = SelectedRace;
+							cache.InsertObject<CacheObject>("first",cacheObjectNew);
+
+							UpdateToCloudAndCache();
 
 						})); 
 			} 
+		}
+
+		private async Task UpdateToCloudAndCache()
+		{
+			VoteCount vc = await LoadVoteCountAsync ();
+			if (vc != null) {
+				if (cacheObjectOld != null && cacheObjectOld.VoteForIndex != 0) {
+					if (cacheObjectOld.VoteForIndex == 1) {
+						if (vc.DemTotal != 0)
+							vc.DemTotal--;
+						if (cacheObjectOld.GenderIndex == 1 && vc.DemMale != 0)
+							vc.DemMale--;
+						if (cacheObjectOld.GenderIndex == 2 && vc.DemFemale != 0)
+							vc.DemFemale--;
+						if (cacheObjectOld.RaceIndex == 1 && vc.DemOther != 0)
+							vc.DemOther--;
+						if (cacheObjectOld.RaceIndex == 2 && vc.DemWhite != 0)
+							vc.DemWhite--;
+						if (cacheObjectOld.RaceIndex == 3 && vc.DemAfricanAmerican != 0)
+							vc.DemAfricanAmerican--;
+						if (cacheObjectOld.RaceIndex == 4 && vc.DemAsianAmerican != 0)
+							vc.DemAsianAmerican--;
+						if (cacheObjectOld.RaceIndex == 5 && vc.DemHispanic != 0)
+							vc.DemHispanic--;
+					}
+					if (cacheObjectOld.VoteForIndex == 2) {
+						if (vc.RepTotal != 0)
+							vc.RepTotal--;
+						if (cacheObjectOld.GenderIndex == 1 && vc.RepMale != 0)
+							vc.RepMale--;
+						if (cacheObjectOld.GenderIndex == 2 && vc.RepFemale != 0)
+							vc.RepFemale--;
+						if (cacheObjectOld.RaceIndex == 1 && vc.RepOther != 0)
+							vc.RepOther--;
+						if (cacheObjectOld.RaceIndex == 2 && vc.RepWhite != 0)
+							vc.RepWhite--;
+						if (cacheObjectOld.RaceIndex == 3 && vc.RepAfricanAmerican != 0)
+							vc.RepAfricanAmerican--;
+						if (cacheObjectOld.RaceIndex == 4 && vc.RepAsianAmerican != 0)
+							vc.RepAsianAmerican--;
+						if (cacheObjectOld.RaceIndex == 5 && vc.RepHispanic != 0)
+							vc.RepHispanic--;
+					}
+				}
+				if (cacheObjectNew != null && cacheObjectNew.VoteForIndex != 0) {
+					if (cacheObjectNew.VoteForIndex == 1) {
+						vc.DemTotal++;
+						if (cacheObjectNew.GenderIndex == 1)
+							vc.DemMale++;
+						if (cacheObjectNew.GenderIndex == 2)
+							vc.DemFemale++;
+						if (cacheObjectNew.RaceIndex == 1)
+							vc.DemOther++;
+						if (cacheObjectNew.RaceIndex == 2)
+							vc.DemWhite++;
+						if (cacheObjectNew.RaceIndex == 3)
+							vc.DemAfricanAmerican++;
+						if (cacheObjectNew.RaceIndex == 4)
+							vc.DemAsianAmerican++;
+						if (cacheObjectNew.RaceIndex == 5)
+							vc.DemHispanic++;
+					}
+					if (cacheObjectNew.VoteForIndex == 2) {
+						vc.RepTotal++;
+						if (cacheObjectNew.GenderIndex == 1)
+							vc.RepMale++;
+						if (cacheObjectNew.GenderIndex == 2)
+							vc.RepFemale++;
+						if (cacheObjectNew.RaceIndex == 1)
+							vc.RepOther++;
+						if (cacheObjectNew.RaceIndex == 2)
+							vc.RepWhite++;
+						if (cacheObjectNew.RaceIndex == 3)
+							vc.RepAfricanAmerican++;
+						if (cacheObjectNew.RaceIndex == 4)
+							vc.RepAsianAmerican++;
+						if (cacheObjectNew.RaceIndex == 5)
+							vc.RepHispanic++;
+					}
+				}
+
+				dataService.UpdateVoteCount (voteCount);
+				LoadCacheDataAsync ();
+			}
 		}
 	}
 }
