@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Autofac;
 
 namespace VVoting
 {
@@ -11,11 +13,7 @@ namespace VVoting
 		{
 			InitializeComponent ();
 			BindingContext = statsPageViewModel;
-			//SizeRequest sz = BVDEM.Measure (0,0,MeasureFlags.None);
-			//BVDEM
 		}
-
-
 	}
 }
 

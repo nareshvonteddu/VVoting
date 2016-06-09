@@ -33,7 +33,10 @@ namespace VVoting
 			get{ return _demOverallPercent; }
 			set
 			{
-				Set (() => DemOverallPercent, ref _demOverallPercent, value);
+				if (Set(() => DemOverallPercent, ref _demOverallPercent, value))
+				{
+					RaisePropertyChanged(() => DemOverallPercent);
+				}
 			}
 		}	
 
@@ -444,19 +447,6 @@ namespace VVoting
 				voteCount = voteCounts [0];
 			}
 			return voteCount;
-		}
-
-		private RelayCommand _tapStats; 
-
-		public RelayCommand TapStats { 
-			get { 
-				return _tapStats
-					?? (_tapStats = new RelayCommand (
-						() => 
-						{ 
-							
-						})); 
-			} 
 		}
 	}
 }

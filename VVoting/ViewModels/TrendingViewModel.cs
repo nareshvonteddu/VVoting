@@ -1,38 +1,19 @@
 ﻿using System;
-using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using System.ComponentModel;
 using Xamarin.Forms;
-using System.Collections.Generic;
 using Autofac;
-using System.Reactive.Linq;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace VVoting
 {
 	public class TrendingViewModel : ViewModelBase
 	{
-		private string  _clickCount = "";
 		CacheObject cacheObjectOld;
 		CacheObject cacheObjectNew = new CacheObject ();
 		Cache cache;
 		AzureDataService dataService;
 		VoteCount voteCount = new VoteCount();
-		INavigation nav;
-
-		public string ClickCount 
-		{
-			get{ return _clickCount; } 
-			set
-			{
-				Set (() => ClickCount, ref _clickCount, value);
-					
-			}
-		}
-
-
 		private Color _democraticBorderColor = Color.Gray;
 		public Color DemocraticBorderColor 
 		{
@@ -56,17 +37,6 @@ namespace VVoting
 			}
 		}
 
-//
-//		private List<string> _genderOptions = new List<string>();
-//		public List<string> GenderOptions 
-//		{
-//			get{ return _genderOptions; }
-//			set
-//			{
-//				Set (() => GenderOptions, ref _genderOptions, value);
-//			}
-//		}
-
 		private int _selectedGender;
 		public int SelectedGender 
 		{
@@ -89,17 +59,12 @@ namespace VVoting
 
 		public TrendingViewModel ()
 		{
-//			GenderOptions.Add ("Male");
-//			GenderOptions.Add ("Female");
 
 			cacheObjectOld = new CacheObject();
 			using (var scope = App.container.BeginLifetimeScope ()) {  
 				cache = App.container.Resolve<Cache> ();
 				dataService = App.container.Resolve<AzureDataService> ();
-				//nav = App.container.ResolveOptional<INavigation> ();
 			}
-			//nav = _nav;
-			//LoadVoteCountAsync ();
 			LoadCacheDataAsync ();
 
 		}
@@ -129,10 +94,15 @@ namespace VVoting
 
 			if (cacheObjectOld != null) 
 			{
-				if (cacheObjectOld.VoteForIndex == 1) {
+				if (cacheObjectOld.VoteForIndex == 1) 
+				{
 					DemocraticBorderColor = Color.Green;
-				} else {
+					RepublicBorderColor = Color.Gray;
+				} 
+				else if (cacheObjectOld.VoteForIndex == 2)
+				{
 					RepublicBorderColor = Color.Green;
+					DemocraticBorderColor = Color.Gray;
 				}
 
 				SelectedRace = cacheObjectOld.RaceIndex;
@@ -140,8 +110,6 @@ namespace VVoting
 			}
 		}
 
-
-		//int i = 0;
 		private RelayCommand _tapDemocratic; 
 
 		public RelayCommand TapDemocratic { 
@@ -150,13 +118,10 @@ namespace VVoting
 					?? (_tapDemocratic = new RelayCommand (
 						() => 
 						{ 
-							DemocraticBorderColor = Color.Green; //String.Format("Clicked {0} times", i++);
+							DemocraticBorderColor = Color.Green; 
 							RepublicBorderColor = Color.Gray;
 
 							cacheObjectNew.VoteForIndex = 1;
-
-//							ClickCount = String.Format("you have clicke it {0} times", i);
-//							i++;
 						})); 
 			} 
 		}
@@ -169,7 +134,7 @@ namespace VVoting
 					?? (_tapRepublic = new RelayCommand (
 						() => 
 						{ 
-							DemocraticBorderColor = Color.Gray; //String.Format("Clicked {0} times", i++);
+							DemocraticBorderColor = Color.Gray; 
 							RepublicBorderColor = Color.Green;
 
 							cacheObjectNew.VoteForIndex = 2;
@@ -189,12 +154,7 @@ namespace VVoting
 							cache.InsertObject<CacheObject>("first",cacheObjectNew);
 
 							UpdateToCloudAndCache();
-							//using (var scope = App.container.BeginLifetimeScope ()) { }
-//							var tv = App.container.Resolve<TrendingPageView>();
-//							var sv = App.container.Resolve<StatsPageView>();
-//							tv.Navigation.PushAsync(sv);
-							//.Navigation.PushAsync(App.container.Resolve<StatsPageView>());
-
+							
 						})); 
 			} 
 		}

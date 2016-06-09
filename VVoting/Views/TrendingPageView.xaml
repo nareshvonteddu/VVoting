@@ -61,6 +61,7 @@
 	<Button x:Name = "DoneButton" Text="Done" HorizontalOptions="Center" BackgroundColor="Navy" TextColor="White"
 	 WidthRequest="75" Margin="0,10,0,0" VerticalOptions="End" Command="{Binding DoneTaped}"/>
 
+			
 	</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

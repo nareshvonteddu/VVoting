@@ -17,11 +17,6 @@ namespace VVoting.Views
 				this.Children.Add(App.container.Resolve<TrendingPageView> ());
 				this.Children.Add (App.container.Resolve<StatsPageView> ());
 			}
-
-
-
-			//this.Children.Add (new TrendingPageView (){ Title = "Trending" });
-			//this.Children.Add (new HistoryPageView (){ Title = "History" });
 		}
 
 	}

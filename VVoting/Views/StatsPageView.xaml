@@ -2,9 +2,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 x:Class="VVoting.StatsPageView" Title="Stats">
-<!--  <ContentPage.GestureRecognizers>
-  	<TapGestureRecognizer Command="{Binding TapStats}"/>
-  </ContentPage.GestureRecognizers>-->
 	<ContentPage.Content>
 		<Grid x:Name="ParentGrid" Grid.Margin="5,30,0,0">
 			<Grid.ColumnDefinitions>
@@ -38,12 +35,13 @@ x:Class="VVoting.StatsPageView" Title="Stats">
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
 			</Grid.RowDefinitions>
+
 			<Label Grid.Row="0" Text="Overall Votes" Grid.ColumnSpan="2" FontSize="12" FontAttributes="Bold"/>
 			<Label Text="Dem: " Grid.Column="0" Grid.Row="1" FontSize="10"/>
 			<StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
-				<BoxView Color="Blue"  WidthRequest="{Binding DemOverallWidth}" HeightRequest="15" 
+				<BoxView Color="Blue"  WidthRequest="{Binding DemOverallWidth, Mode=TwoWay}" HeightRequest="15" 
 					HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
-				<Label Text="{Binding DemOverallPercent, StringFormat=\{0:0.0\}%}" FontSize="9" VerticalTextAlignment="Center"/>
+				<Label Text="{Binding DemOverallPercent, Mode=TwoWay, StringFormat=\{0:0.0\}%}" FontSize="9" VerticalTextAlignment="Center"/>
 			</StackLayout>
 			<Label Text="Rep: " Grid.Column="0" Grid.Row="2"  FontSize="10"/>
 			<StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="1">

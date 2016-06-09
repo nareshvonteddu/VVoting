@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Autofac;
 
 using Xamarin.Forms;
@@ -13,11 +12,10 @@ namespace VVoting
 			InitializeComponent ();
 			BindingContext = viewModel;
 
-			DoneButton.Clicked += (object sender, EventArgs e) => 
-			{
-				App.container.Resolve<StatsPageViewModel>().LoadVoteCountToCharts();
-				App.container.Resolve<Views.MainPageView>().CurrentPage = App.container.Resolve<Views.MainPageView>().Children[1];
-			};
+			//DoneButton.Clicked += (object sender, EventArgs e) => 
+			//{
+			//	App.container.Resolve<Views.MainPageView>().CurrentPage = App.container.Resolve<Views.MainPageView>().Children[1];
+			//};
 		}
 	}
 }
