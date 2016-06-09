@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using System.IO;
 
 namespace VVoting.iOS
 {
@@ -25,6 +26,8 @@ namespace VVoting.iOS
 			LoadApplication (new App ());
 
 			return base.FinishedLaunching (app, options);
+
+
 		}
 	}
 }

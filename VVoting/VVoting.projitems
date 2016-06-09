@@ -17,17 +17,17 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\TrendingPageView.xaml.cs">
       <DependentUpon>TrendingPageView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\HistoryPageView.xaml.cs">
-      <DependentUpon>HistoryPageView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TrendingViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HistoryPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ImageCircle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Caching\CacheObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Caching\Cache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Caching\ICache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Azure\VoteCount.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Azure\AzureDataService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\StatsPageView.xaml.cs">
+      <DependentUpon>StatsPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StatsPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MainPageView.xaml">
@@ -36,7 +36,7 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\TrendingPageView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\HistoryPageView.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\StatsPageView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

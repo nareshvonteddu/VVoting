@@ -23,6 +23,8 @@ namespace VVoting.Droid
 
 			LoadApplication (new App ());
 
+
+
 		}
 	}
 }

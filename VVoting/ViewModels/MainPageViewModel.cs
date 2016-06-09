@@ -11,7 +11,7 @@ namespace VVoting.ViewModels
 	{
 		public MainPageViewModel ()
 		{
-			
+
 		}
 	}
 

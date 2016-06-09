@@ -19,13 +19,15 @@ namespace VVoting
 			builder.RegisterType<MainPageView> ().SingleInstance ();
 			builder.RegisterType<TrendingViewModel> ();
 			builder.RegisterType<TrendingPageView> ().SingleInstance ();
-			builder.RegisterType<HistoryPageViewModel> ();
-			builder.RegisterType<HistoryPageView> ().SingleInstance ();
+			builder.RegisterType<StatsPageViewModel> ();
+			builder.RegisterType<StatsPageView> ().SingleInstance ();
 			builder.RegisterType<Cache> ().SingleInstance ();
 			builder.RegisterType<AzureDataService> ().SingleInstance ();
-
+			//builder.RegisterType<INavigation> ().SingleInstance ();
 
 			container = builder.Build ();
+
+
 
 			var page = container.Resolve<MainPageView> ();
 			MainPage = page;

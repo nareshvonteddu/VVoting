@@ -20,6 +20,7 @@ namespace VVoting
 		Cache cache;
 		AzureDataService dataService;
 		VoteCount voteCount = new VoteCount();
+		INavigation nav;
 
 		public string ClickCount 
 		{
@@ -74,7 +75,7 @@ namespace VVoting
 			{
 				Set (() => SelectedGender, ref _selectedGender, value);
 			}
-		}
+		}	
 
 		private int _selectedRace;
 		public int SelectedRace 
@@ -95,8 +96,9 @@ namespace VVoting
 			using (var scope = App.container.BeginLifetimeScope ()) {  
 				cache = App.container.Resolve<Cache> ();
 				dataService = App.container.Resolve<AzureDataService> ();
+				//nav = App.container.ResolveOptional<INavigation> ();
 			}
-
+			//nav = _nav;
 			//LoadVoteCountAsync ();
 			LoadCacheDataAsync ();
 
@@ -187,6 +189,11 @@ namespace VVoting
 							cache.InsertObject<CacheObject>("first",cacheObjectNew);
 
 							UpdateToCloudAndCache();
+							//using (var scope = App.container.BeginLifetimeScope ()) { }
+//							var tv = App.container.Resolve<TrendingPageView>();
+//							var sv = App.container.Resolve<StatsPageView>();
+//							tv.Navigation.PushAsync(sv);
+							//.Navigation.PushAsync(App.container.Resolve<StatsPageView>());
 
 						})); 
 			} 

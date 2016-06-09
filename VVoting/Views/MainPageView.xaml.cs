@@ -15,8 +15,9 @@ namespace VVoting.Views
 
 			using (var scope = App.container.BeginLifetimeScope ()) {  
 				this.Children.Add(App.container.Resolve<TrendingPageView> ());
-				this.Children.Add(App.container.Resolve<HistoryPageView> ());
+				this.Children.Add (App.container.Resolve<StatsPageView> ());
 			}
+
 
 
 			//this.Children.Add (new TrendingPageView (){ Title = "Trending" });

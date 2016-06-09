@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+x:Class="VVoting.StatsPageView" Title="Stats">
+<!--  <ContentPage.GestureRecognizers>
+  	<TapGestureRecognizer Command="{Binding TapStats}"/>
+  </ContentPage.GestureRecognizers>-->
+	<ContentPage.Content>
+		<Grid x:Name="ParentGrid" Grid.Margin="5,30,0,0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+			<Label Grid.Row="0" Text="Overall Votes" Grid.ColumnSpan="2" FontSize="12" FontAttributes="Bold"/>
+			<Label Text="Dem: " Grid.Column="0" Grid.Row="1" FontSize="10"/>
+			<StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+				<BoxView Color="Blue"  WidthRequest="{Binding DemOverallWidth}" HeightRequest="15" 
+					HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+				<Label Text="{Binding DemOverallPercent, StringFormat=\{0:0.0\}%}" FontSize="9" VerticalTextAlignment="Center"/>
+			</StackLayout>
+			<Label Text="Rep: " Grid.Column="0" Grid.Row="2"  FontSize="10"/>
+			<StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+				<BoxView Color="Red" WidthRequest="{Binding RepOverallWidth}" HeightRequest="15" 
+					HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+				<Label Text="{Binding RepOverallPercent, StringFormat=\{0:0.0\}%}" FontSize="9" VerticalTextAlignment="Center"/>
+			</StackLayout>
+			<Label Grid.Row="3" Text="Male Votes" Grid.ColumnSpan="2" FontSize="12" FontAttributes="Bold"/>
+			<Label Text="Dem: " Grid.Column="0" Grid.Row="4" FontSize="10"/>
+			<StackLayout Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
+				<BoxView Color="Blue"  WidthRequest="{Binding DemMaleWidth}" HeightRequest="15" 
+					HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+				<Label Text="{Binding DemMalePercent, StringFormat=\{0:0.0\}%}" FontSize="9" VerticalTextAlignment="Center"/>
+			</StackLayout>
+			<Label Text="Rep: " Grid.Column="0" Grid.Row="5"  FontSize="10"/>
+			<StackLayout Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
+				<BoxView Color="Red" WidthRequest="{Binding RepMaleWidth}" HeightRequest="15" 
+					HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+				<Label Text="{Binding RepMalePercent, StringFormat=\{0:0.0\}%}" FontSize="9" VerticalTextAlignment="Center"/>
+			</StackLayout>
+			<Label Grid.Row="6" Text="Female Votes" Grid.ColumnSpan="2" FontSize="12" FontAttributes="Bold"/>
+			<Label Text="Dem: " Grid.Column="0" Grid.Row="7" FontSize="10"/>
+			<StackLayout Orientation="Horizontal" Grid.Row="7" Grid.Column="1">
+				<BoxView Color="Blue"  WidthRequest="{Binding DemFemaleWidth}" HeightRequest="15" 
+					HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+				<Label Text="{Binding DemFemalePercent, StringFormat=\{0:0.0\}%}" FontSize="9" VerticalTextAlignment="Center"/>
+			</StackLayout>
+			<Label Text="Rep: " Grid.Column="0" Grid.Row="8"  FontSize="10"/>
+			<StackLayout Orientation="Horizontal" Grid.Row="8" Grid.Column="1">
+				<BoxView Color="Red" WidthRequest="{Binding RepFemaleWidth}" HeightRequest="15" 
+					HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+				<Label Text="{Binding RepFemalePercent, StringFormat=\{0:0.0\}%}" FontSize="9" VerticalTextAlignment="Center"/>
+			</StackLayout>
+			<Label Grid.Row="9" Text="Votes By Race/Ethnicity" Grid.ColumnSpan="2" TextColor="Blue" FontAttributes="Italic"/>
+			<Label Grid.Row="10" Text="White" Grid.ColumnSpan="2" FontSize="12" FontAttributes="Bold"/>
+			<Label Text="Dem: " Grid.Column="0" Grid.Row="11" FontSize="10"/>
+			<StackLayout Orientation="Horizontal" Grid.Row="11" Grid.Column="1">
+				<BoxView Color="Blue"  WidthRequest="{Binding DemWhiteWidth}" HeightRequest="15" 
+					HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+				<Label Text="{Binding DemWhitePercent, StringFormat=\{0:0.0\}%}" FontSize="9" VerticalTextAlignment="Center"/>
+			</StackLayout>
+			<Label Text="Rep: " Grid.Column="0" Grid.Row="12"  FontSize="10"/>
+			<StackLayout Orientation="Horizontal" Grid.Row="12" Grid.Column="1">
+				<BoxView Color="Red" WidthRequest="{Binding RepWhiteWidth}" HeightRequest="15" 
+					HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+				<Label Text="{Binding RepWhitePercent, StringFormat=\{0:0.0\}%}" FontSize="9" VerticalTextAlignment="Center"/>
+			</StackLayout>
+			<Label Grid.Row="13" Text="African American" Grid.ColumnSpan="2" FontSize="12" FontAttributes="Bold"/>
+			<Label Text="Dem: " Grid.Column="0" Grid.Row="14" FontSize="10"/>
+			<StackLayout Orientation="Horizontal" Grid.Row="14" Grid.Column="1">
+				<BoxView Color="Blue"  WidthRequest="{Binding DemAfricanAmericanWidth}" HeightRequest="15" 
+					HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+				<Label Text="{Binding DemAfricanAmericanPercent, StringFormat=\{0:0.0\}%}" FontSize="9" VerticalTextAlignment="Center"/>
+			</StackLayout>
+			<Label Text="Rep: " Grid.Column="0" Grid.Row="15"  FontSize="10"/>
+			<StackLayout Orientation="Horizontal" Grid.Row="15" Grid.Column="1">
+				<BoxView Color="Red" WidthRequest="{Binding RepAfricanAmericanWidth}" HeightRequest="15" 
+					HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+				<Label Text="{Binding RepAfricanAmericanPercent, StringFormat=\{0:0.0\}%}" FontSize="9" VerticalTextAlignment="Center"/>
+			</StackLayout>
+			<Label Grid.Row="16" Text="Asian American" Grid.ColumnSpan="2" FontSize="12" FontAttributes="Bold"/>
+			<Label Text="Dem: " Grid.Column="0" Grid.Row="17" FontSize="10"/>
+			<StackLayout Orientation="Horizontal" Grid.Row="17" Grid.Column="1">
+				<BoxView Color="Blue"  WidthRequest="{Binding DemAsianAmericanWidth}" HeightRequest="15" 
+					HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+				<Label Text="{Binding DemAsianAmericanPercent, StringFormat=\{0:0.0\}%}" FontSize="9" VerticalTextAlignment="Center"/>
+			</StackLayout>
+			<Label Text="Rep: " Grid.Column="0" Grid.Row="18"  FontSize="10"/>
+			<StackLayout Orientation="Horizontal" Grid.Row="18" Grid.Column="1">
+				<BoxView Color="Red" WidthRequest="{Binding RepAsianAmericanWidth}" HeightRequest="15" 
+					HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+				<Label Text="{Binding RepAsianAmericanPercent, StringFormat=\{0:0.0\}%}" FontSize="9" VerticalTextAlignment="Center"/>
+			</StackLayout>
+			<Label Grid.Row="19" Text="Hispanic or Latino" Grid.ColumnSpan="2" FontSize="12" FontAttributes="Bold"/>
+			<Label Text="Dem: " Grid.Column="0" Grid.Row="20" FontSize="10"/>
+			<StackLayout Orientation="Horizontal" Grid.Row="20" Grid.Column="1">
+				<BoxView Color="Blue"  WidthRequest="{Binding DemHispanicWidth}" HeightRequest="15" 
+					HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+				<Label Text="{Binding DemHispanicPercent, StringFormat=\{0:0.0\}%}" FontSize="9" VerticalTextAlignment="Center"/>
+			</StackLayout>
+			<Label Text="Rep: " Grid.Column="0" Grid.Row="21"  FontSize="10"/>
+			<StackLayout Orientation="Horizontal" Grid.Row="21" Grid.Column="1">
+				<BoxView Color="Red" WidthRequest="{Binding RepHispanicWidth}" HeightRequest="15" 
+					HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+				<Label Text="{Binding RepHispanicPercent, StringFormat=\{0:0.0\}%}" FontSize="9" VerticalTextAlignment="Center"/>
+			</StackLayout>
+			<Label Grid.Row="22" Text="Others" Grid.ColumnSpan="2" FontSize="12" FontAttributes="Bold"/>
+			<Label Text="Dem: " Grid.Column="0" Grid.Row="23" FontSize="10"/>
+			<StackLayout Orientation="Horizontal" Grid.Row="23" Grid.Column="1">
+				<BoxView Color="Blue"  WidthRequest="{Binding DemOtherWidth}" HeightRequest="15" 
+					HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+				<Label Text="{Binding DemOtherPercent, StringFormat=\{0:0.0\}%}" FontSize="9" VerticalTextAlignment="Center"/>
+			</StackLayout>
+			<Label Text="Rep: " Grid.Column="0" Grid.Row="24"  FontSize="10"/>
+			<StackLayout Orientation="Horizontal" Grid.Row="24" Grid.Column="1">
+				<BoxView Color="Red" WidthRequest="{Binding RepOtherWidth}" HeightRequest="15" 
+					HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+				<Label Text="{Binding RepOtherPercent, StringFormat=\{0:0.0\}%}" FontSize="9" VerticalTextAlignment="Center"/>
+			</StackLayout>
+		</Grid>
+	</ContentPage.Content>
+</ContentPage>
