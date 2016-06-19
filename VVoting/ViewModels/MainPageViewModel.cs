@@ -7,17 +7,12 @@ using Autofac;
 
 namespace VVoting.ViewModels
 {
-	public class MainPageViewModel : ViewModelBase, IMainPageViewModel
+	public class MainPageViewModel : ViewModelBase
 	{
 		public MainPageViewModel ()
 		{
 
 		}
-	}
-
-	public interface IMainPageViewModel
-	{
-		
 	}
 }
 

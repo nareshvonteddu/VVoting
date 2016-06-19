@@ -16,24 +16,34 @@ namespace VVoting
 		//IMobileServiceSyncTable<VoteCount> voteCountTable;
 		IMobileServiceTable<VoteCount> voteCountTable;
 
-		public async Task Initialize()
+
+		public void Initialize()
 		{
 			//Create our client
 			MobileService = new MobileServiceClient("https://vvoteamerica.azurewebsites.net");
 
-//			const string path = "syncstore.db";
-//			//setup our local sqlite store and intialize our table
-//			var store = new MobileServiceSQLiteStore(path);
-//			store.DefineTable<VoteCount> ();
-//			await MobileService.SyncContext.InitializeAsync(store, new MobileServiceSyncHandler());
+			//			const string path = "syncstore.db";
+			//			//setup our local sqlite store and intialize our table
+			//			var store = new MobileServiceSQLiteStore(path);
+			//			store.DefineTable<VoteCount> ();
+			//			await MobileService.SyncContext.InitializeAsync(store, new MobileServiceSyncHandler());
 
 			//Get our sync table that will call out to azure
-			voteCountTable = MobileService.GetTable<VoteCount>();
+			voteCountTable = MobileService.GetTable<VoteCount>();//await GetVoteCountTable(); //MobileService.GetTable<VoteCount>();
 		}
+
+		//Task<IMobileServiceTable<VoteCount>> GetVoteCountTable()
+		//{
+		//	Task<IMobileServiceTable<VoteCount>> task = new Task<IMobileServiceTable<VoteCount>>(() =>
+		//	{
+		//		return MobileService.GetTable<VoteCount>();
+		//	});
+		//	task.Start();
+		//	return task;
+		//}
 
 		public async Task<List<VoteCount>> GetVoteCount()
 		{
-			//await SyncVoteCount ();
 			return await voteCountTable.ToListAsync();
 		}
 

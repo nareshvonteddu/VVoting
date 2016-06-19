@@ -28,6 +28,8 @@
       <DependentUpon>StatsPageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StatsPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IEventInterface.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EventRaiser.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MainPageView.xaml">

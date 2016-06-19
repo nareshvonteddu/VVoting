@@ -15,22 +15,25 @@ namespace VVoting
 			//MainPage = new VVoting.Views.MainPageView ();
 
 			ContainerBuilder builder = new ContainerBuilder ();
+
+			builder.RegisterType<EventRaiser>().As<IEventInterface>().SingleInstance();
 			builder.RegisterType<MainPageViewModel>();
-			builder.RegisterType<MainPageView> ().SingleInstance ();
-			builder.RegisterType<TrendingViewModel> ();
+			builder.RegisterType<MainPageView> ();
+			builder.RegisterType<TrendingViewModel> ().SingleInstance();
 			builder.RegisterType<TrendingPageView> ().SingleInstance ();
-			builder.RegisterType<StatsPageViewModel> ();
+			builder.RegisterType<StatsPageViewModel> ().SingleInstance();
 			builder.RegisterType<StatsPageView> ().SingleInstance ();
 			builder.RegisterType<Cache> ().SingleInstance ();
 			builder.RegisterType<AzureDataService> ().SingleInstance ();
-			//builder.RegisterType<INavigation> ().SingleInstance ();
 
 			container = builder.Build ();
 
 
-
-			var page = container.Resolve<MainPageView> ();
-			MainPage = page;
+			using (var scope = container.BeginLifetimeScope())
+			{
+				var page = container.Resolve<MainPageView>();
+				MainPage = page;
+			}
 		}
 
 		protected override void OnStart ()

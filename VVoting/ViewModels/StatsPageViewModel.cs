@@ -9,6 +9,8 @@ using Autofac;
 using System.Reactive.Linq;
 using System.Linq;
 using System.Threading.Tasks;
+using VVoting.Views;
+using System.Threading;
 
 namespace VVoting
 {
@@ -16,6 +18,21 @@ namespace VVoting
 	{
 		AzureDataService dataService;
 		VoteCount voteCount;
+
+		Cache cache;
+
+		//private Color _testBorderColor = Color.Gray;
+		//public Color TestBorderColor
+		//{
+		//	get { return _testBorderColor; }
+		//	set
+		//	{
+		//		if (Set(() => TestBorderColor, ref _testBorderColor, value))
+		//		{
+		//			RaisePropertyChanged(() => TestBorderColor);
+		//		}
+		//	}
+		//}
 
 		private double _initWidth;
 		public double InitWidth 
@@ -358,17 +375,30 @@ namespace VVoting
 			}
 		}
 
-		public StatsPageViewModel ()
+		public StatsPageViewModel (IEventInterface iev)
 		{
 			using (var scope = App.container.BeginLifetimeScope ()) { 
 				dataService = App.container.Resolve<AzureDataService> ();
+				cache = App.container.Resolve<Cache>();
 			}
-			LoadVoteCountToCharts ();
+
+			iev.TrendsTabOpened += TabOpenedMethod;
+		}
+
+		//public async void load()
+		//{
+		//	await LoadVoteCountAsync();
+		//}
+
+		private async void TabOpenedMethod(object s, EventArgs e)
+		{
+				await LoadVoteCountToCharts();
 		}
 
 		public async Task LoadVoteCountToCharts()
 		{
-			await LoadVoteCountAsync ();
+			voteCount = await cache.GetObject<VoteCount>("second");
+			//Thread.Sleep(1000);
 			if (voteCount != null) 
 			{
 				long totalCount = voteCount.DemTotal + voteCount.RepTotal;
@@ -420,6 +450,7 @@ namespace VVoting
 				RepOtherWidth = GetWidth (RepOtherPercent);
 
 			}
+			//TestBorderColor = Color.Green;
 		}
 
 		public double GetPercentage(long value, long total)
@@ -434,19 +465,6 @@ namespace VVoting
 			if (value <= 0)
 				return 0;
 			return Convert.ToDouble(((double) (275 * value)) / 100.0);
-		}
-
-
-		private async Task<VoteCount> LoadVoteCountAsync()
-		{
-			await dataService.Initialize();
-
-			var voteCounts = await dataService.GetVoteCount ();
-			if(voteCounts != null && voteCounts.Count > 0)
-			{
-				voteCount = voteCounts [0];
-			}
-			return voteCount;
 		}
 	}
 }

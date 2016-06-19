@@ -6,18 +6,37 @@ using Autofac;
 
 namespace VVoting.Views
 {
+	
 	public partial class MainPageView : TabbedPage
 	{
-		public MainPageView (MainPageViewModel viewModel)
+		IEventInterface iev;
+		public MainPageView (MainPageViewModel viewModel, IEventInterface _iev)
 		{
 			InitializeComponent ();
 			BindingContext = viewModel;
 
-			using (var scope = App.container.BeginLifetimeScope ()) {  
-				this.Children.Add(App.container.Resolve<TrendingPageView> ());
-				this.Children.Add (App.container.Resolve<StatsPageView> ());
+			iev = _iev;
+
+			using (var scope = App.container.BeginLifetimeScope())
+			{
+				this.Children.Add(App.container.Resolve<TrendingPageView>());
+				this.Children.Add(App.container.Resolve<StatsPageView>());
 			}
+
+			this.CurrentPageChanged += (object sender, EventArgs e) => 
+			{
+				if (((MainPageView)sender).CurrentPage.Title == "Trends")
+				{
+					iev.OnTrendsTabOpened();
+				}
+				if (((MainPageView)sender).CurrentPage.Title == "Your Vote")
+				{
+					iev.OnYourVoteTapOpened();
+				}
+			};
 		}
+
+
 
 	}
 }

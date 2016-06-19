@@ -11,11 +11,6 @@ namespace VVoting
 		{
 			InitializeComponent ();
 			BindingContext = viewModel;
-
-			//DoneButton.Clicked += (object sender, EventArgs e) => 
-			//{
-			//	App.container.Resolve<Views.MainPageView>().CurrentPage = App.container.Resolve<Views.MainPageView>().Children[1];
-			//};
 		}
 	}
 }

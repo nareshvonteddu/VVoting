@@ -28,6 +28,10 @@ namespace VVoting
 			{
 				return default(T);
 			}
+			catch (Exception)
+			{
+				return default(T);
+			}
 		}
 
 		public async Task InsertObject<T>(string key, T value)

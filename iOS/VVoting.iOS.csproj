@@ -38,8 +38,9 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchFloat32>true</MtouchFloat32>
     <MtouchUseSGen>true</MtouchUseSGen>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Distribution</CodesignKey>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <CodesignProvision>Automatic:AppStore</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -156,9 +157,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
-  </ItemGroup>
-  <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
   </ItemGroup>
   <ItemGroup>
@@ -183,5 +181,32 @@
   <ItemGroup>
     <BundleResource Include="Resources\DemocraticLogo.png" />
     <BundleResource Include="Resources\RepublicanlogoBorder.png" />
+    <BundleResource Include="Resources\Home.png" />
+    <BundleResource Include="Resources\BarChart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\Icon29.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\Icon29%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\Icon29%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\Icon40%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\Icon40%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\icon57x57.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\icon114x114.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\icon120x120.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\icon180x180.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\Icon40.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\Icon76.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\Icon76%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\icon167x167.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\icon50x50.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\icon100x100.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\icon72x72.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons-1.appiconset\icon144x144.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Splash1242x2208.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Splash750x1334.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Splash640x960.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Splash640x1136.png" />
   </ItemGroup>
 </Project>
